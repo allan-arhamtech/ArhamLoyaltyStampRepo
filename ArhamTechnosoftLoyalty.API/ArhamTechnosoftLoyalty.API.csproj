@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArhamTechnosoftLoyalty.BAL\ArhamTechnosoftLoyalty.BAL.csproj" />
+    <ProjectReference Include="..\ArhamTechnosoftLoyalty.DAL\ArhamTechnosoftLoyalty.DAL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Company\Data\" />
+    <Folder Include="Areas\Company\Models\" />
+    <Folder Include="Areas\Company\Views\" />
+    <Folder Include="Areas\UserManagement\Services\" />
+    <Folder Include="Areas\UserManagement\Models\" />
+    <Folder Include="Areas\UserManagement\Views\" />
+  </ItemGroup>
+
+</Project>

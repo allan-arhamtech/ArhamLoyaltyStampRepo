@@ -1,0 +1,15 @@
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\bin\Debug\net5.0\ArhamTechnosoftLoyalty.Models.deps.json
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\bin\Debug\net5.0\ArhamTechnosoftLoyalty.Models.dll
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\bin\Debug\net5.0\ref\ArhamTechnosoftLoyalty.Models.dll
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\bin\Debug\net5.0\ArhamTechnosoftLoyalty.Models.pdb
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.AssemblyInfoInputs.cache
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.AssemblyInfo.cs
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.csproj.CoreCompileInputs.cache
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.dll
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ref\ArhamTechnosoftLoyalty.Models.dll
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.pdb
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\bin\Debug\net5.0\ArhamTechnosoftLoyalty.Models.runtimeconfig.json
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\bin\Debug\net5.0\ArhamTechnosoftLoyalty.Models.runtimeconfig.dev.json
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.genruntimeconfig.cache
+C:\Users\arham13\source\repos\ArhamTechnosoftLoyalty\ArhamTechnosoftLoyalty.Models\obj\Debug\net5.0\ArhamTechnosoftLoyalty.Models.csproj.AssemblyReference.cache

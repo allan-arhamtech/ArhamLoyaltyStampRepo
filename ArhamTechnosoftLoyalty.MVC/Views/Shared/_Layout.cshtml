@@ -1,0 +1,52 @@
+﻿@using static ArhamTechnosoftLoyalty.MVC.Helper.NavigationIndicatorHelper;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Arham-Loyalty Program</title>
+    <partial name="_Styles" />
+</head>
+<body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-bar"></div>
+    </div>
+    <!-- [ Pre-loader ] end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+            <!--Header -->
+            <partial name="_Header" />
+            <!--Header End-->
+            <!--Container-->
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <!--Sidebar-->
+                    <partial name="_Sidebar" />
+
+                    <!--Body-->
+                    @RenderBody()
+
+                    <!-- [ style Customizer ] start -->
+                    <div id="styleSelector">
+                    </div>
+                    <!-- [ style Customizer ] end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay1"></div>
+    <div class="spanner1">
+        <div class="loader1"></div>
+    </div>
+    <partial name="_Scripts" />
+    @RenderSection("Scripts", required: false)
+    <!-- Custom js -->
+    <script src="~/assets/js/pcoded.min.js"></script>
+    <script src="~/assets/js/vertical/vertical-layout.min.js"></script>
+    <script src="~/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script type="text/javascript" src="~/assets/js/script.min.js"></script>
+</body>
+</html>

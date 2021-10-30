@@ -1,0 +1,76 @@
+﻿@*@inject SignInManager<PropertyCRMUser> signInManager*@
+
+<!-- [ Header ] start -->
+<nav class="navbar header-navbar pcoded-header">
+    <div class="navbar-wrapper">
+        <div class="navbar-logo">
+            <a asp-controller="Home" asp-action="Index">
+                <img class="img-fluid" src="~/assets/images/logo.png" style="height:50px;width:200px" alt="Theme-Logo" />
+            </a>
+
+            <a class="mobile-menu" id="mobile-collapse" href="#">
+                <i class="feather icon-menu icon-toggle-right"></i>
+            </a>
+            <a class="mobile-options waves-effect waves-light">
+                <i class="feather icon-more-horizontal"></i>
+            </a>
+        </div>
+        <div class="navbar-container container-fluid">
+            <ul class="nav-left">
+                <li>
+                    <a href="#!" onclick="javascript:toggleFullScreen()" class="waves-effect waves-light">
+                        <i class="full-screen feather icon-maximize"></i>
+                    </a>
+                </li>
+            </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <ul class="nav-right">
+                    <li class="header-notification" id="resetNotifications">
+                        @*@await Component.InvokeAsync("AgentNotifications")*@
+                    </li>
+                    <li class="user-profile header-notification">
+                        <div class="dropdown-primary dropdown">
+                            <div class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/assets/images/avatar-blank.jpg" class="img-radius" alt="User-Profile-Image">
+                                <span>Allan</span>
+                                @*<span>@User.Identity.Name</span>*@
+                                <i class="feather icon-chevron-down"></i>
+                            </div>
+                            <ul class="show-notification profile-notification dropdown-menu" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
+                                <li>
+                                    <a href="#">
+                                        <i class="feather icon-user"></i> Profile
+                                    </a>
+                                </li>
+                                <li>
+                                    @*<form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button type="submit" class="btn btn-primary"><i class="feather icon-log-out"></i>Logout</button>
+                                    </form>*@
+                                    <a asp-action="logout" asp-controller="Account" asp-route-returnUrl="">
+                                        <i class="feather icon-log-out"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                @*<ul class="nav-right">
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Login">
+                            <i class="feather icon-log-in"></i> Login
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Register">
+                            <i class="feather icon-login"></i> Register
+                        </a>
+                    </li>
+                </ul>*@
+            }
+        </div>
+    </div>
+</nav>
