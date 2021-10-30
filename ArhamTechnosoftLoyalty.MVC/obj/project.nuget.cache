@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oyfGTGhRS5UauFLXFRKKzJdqcbVlia55Ky0jsA+/w5xy7Ry1kMWo6Iaa0MAIDC1GS7rm/QCAzTXL8R5l5OpzFQ==",
+  "dgSpecHash": "txC5YCYLt7++SqHWjYjOZOnL4wNukhCsCXZ4OEUcvrNGND9h0LrbPIdWVrZ3wup+Igcx0npBWeuHfpN2ELxTLg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arham13\\source\\repos\\ArhamTechnosoftLoyalty\\ArhamTechnosoftLoyalty.MVC\\ArhamTechnosoftLoyalty.MVC.csproj",
+  "projectFilePath": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.MVC\\ArhamTechnosoftLoyalty.MVC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arham13\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.11\\microsoft.aspnetcore.cryptography.internal.5.0.11.nupkg.sha512",

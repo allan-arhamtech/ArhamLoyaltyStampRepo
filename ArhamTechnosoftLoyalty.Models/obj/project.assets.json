@@ -885,11 +885,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arham13\\source\\repos\\ArhamTechnosoftLoyalty\\ArhamTechnosoftLoyalty.Models\\ArhamTechnosoftLoyalty.Models.csproj",
+      "projectUniqueName": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.Models\\ArhamTechnosoftLoyalty.Models.csproj",
       "projectName": "ArhamTechnosoftLoyalty.Models",
-      "projectPath": "C:\\Users\\arham13\\source\\repos\\ArhamTechnosoftLoyalty\\ArhamTechnosoftLoyalty.Models\\ArhamTechnosoftLoyalty.Models.csproj",
+      "projectPath": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.Models\\ArhamTechnosoftLoyalty.Models.csproj",
       "packagesPath": "C:\\Users\\arham13\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arham13\\source\\repos\\ArhamTechnosoftLoyalty\\ArhamTechnosoftLoyalty.Models\\obj\\",
+      "outputPath": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

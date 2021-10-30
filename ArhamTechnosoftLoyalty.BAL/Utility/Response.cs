@@ -11,5 +11,6 @@ namespace ArhamTechnosoftLoyalty.BAL.Utility
         public string Message { get; set; }
         public List<string> Errors { get; set; }
         public bool IsSuccess { get; set; }
+        public object data { get; set; }
     }
 }

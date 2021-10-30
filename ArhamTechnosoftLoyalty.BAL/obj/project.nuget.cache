@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "D67P7TWcCycaVdS1oAEOvIZT4JLCnAAPKacqXfN29b0CTChmgQ4TluAyvgBk7ZMfwvYIV6yY7MoC7WPp3VdZzQ==",
+  "dgSpecHash": "+2GK4MEyn2gef4Oj2+kzYzVpYvVCgikLOct6qNjaPp5I9psJX6VYcePC7jXI3PVNp5w1nH8nfZhcTAem5xyv7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arham13\\source\\repos\\ArhamTechnosoftLoyalty\\ArhamTechnosoftLoyalty.BAL\\ArhamTechnosoftLoyalty.BAL.csproj",
+  "projectFilePath": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.BAL\\ArhamTechnosoftLoyalty.BAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.11\\microsoft.aspnetcore.cryptography.internal.5.0.11.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",
