@@ -1,5 +1,8 @@
 ﻿@using static ArhamTechnosoftLoyalty.MVC.Helper.NavigationIndicatorHelper
-@*@inject SignInManager<PropertyCRMUser> signInManager*@
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@using ArhamTechnosoftLoyalty.Models.Common
+
 <!-- [ navigation menu ] start -->
 <nav class="pcoded-navbar">
     <div class="nav-list">
@@ -14,30 +17,31 @@
                             <span class="pcoded-mtext">Dashboard</span>
                         </a>
                     </li>
-                    <li class="@Url.MakeActiveClass("company", "get-list")">
-                        <a asp-controller="company" asp-action="get-list" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="feather icon-box"></i></span>
-                            <span class="pcoded-mtext">Company</span>
-                        </a>
-                    </li>
-                    <li class="pcoded-hasmenu @Url.MakeActiveClass("Account", "RoleList", true)">
-                        <a href="javascript:void(0)" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="feather icon-users"></i></span>
-                            <span class="pcoded-mtext">User Management</span>
-                        </a>
-                        <ul class="pcoded-submenu">
-                            <li class="@Url.MakeActiveClass("Account", "RoleList")">
-                                <a asp-controller="Account" asp-action="RoleList" class="waves-effect waves-dark">
-                                    <span class="pcoded-mtext">Role</span>
-                                </a>
-                            </li>
-                            <li class="@Url.MakeActiveClass("account", "get-list")">
-                                <a href="dashboard-crm.html" class="waves-effect waves-dark">
-                                    <span class="pcoded-mtext">Permissions</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
+                    @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Company.View)).Result.Succeeded)
+                    {
+                        <li class="@Url.MakeActiveClass("company", "get-list")">
+                            <a asp-controller="company" asp-action="get-list" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="feather icon-box"></i></span>
+                                <span class="pcoded-mtext">Company</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((AuthorizationService.AuthorizeAsync(User, Permissions.UserManagement.View)).Result.Succeeded)
+                    {
+                        <li class="pcoded-hasmenu @Url.MakeActiveClass("Account", "RoleList", true)">
+                            <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="feather icon-users"></i></span>
+                                <span class="pcoded-mtext">User Management</span>
+                            </a>
+                            <ul class="pcoded-submenu">
+                                <li class="@Url.MakeActiveClass("Account", "RoleList")">
+                                    <a asp-controller="Account" asp-action="RoleList" class="waves-effect waves-dark">
+                                        <span class="pcoded-mtext">Role</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
                 }
             </ul>
         </div>

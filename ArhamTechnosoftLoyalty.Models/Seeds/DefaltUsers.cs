@@ -1,6 +1,7 @@
 ﻿using ArhamTechnosoftLoyalty.Models.Common;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace ArhamTechnosoftLoyalty.Models.Seeds
         private async static Task SeedClaimsForSuperAdmin(this RoleManager<IdentityRole> roleManager)
         {
             var adminRole = await roleManager.FindByNameAsync("SuperAdmin");
-            await roleManager.AddPermissionClaim(adminRole, "Company");
+            await roleManager.AddPermissionClaim(adminRole, "UserManagement");
         }
 
         public static async Task AddPermissionClaim(this RoleManager<IdentityRole> roleManager, IdentityRole role, string module)

@@ -14,7 +14,6 @@
                     <i class="feather icon-clipboard bg-c-blue"></i>
                     <div class="d-inline">
                         <h5>Role Management</h5>
-                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
                     </div>
                 </div>
             </div>
@@ -46,7 +45,7 @@
 
                                 <div class="card-header">
                                     <h5>Roles</h5>
-                                    <a asp-controller="Account" asp-action="AddRole" class="btn btn-dark btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Listing</a>
+                                    <a asp-controller="Account" asp-action="AddRole" class="btn btn-dark btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add Role</a>
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
@@ -71,7 +70,7 @@
                                                             <a asp-action="SaveListing" asp-controller="Listing" asp-route-roleId="@item.Id">
                                                                 <i class="fa fa-pencil mr-1" aria-hidden="true"></i>Edit
                                                             </a>
-                                                            <a asp-action="SaveListing" asp-controller="Listing" asp-route-roleId="@item.Id">
+                                                            <a asp-action="GetRolePermission" asp-controller="Account" asp-route-roleId="@item.Id">
                                                                 <i class="fa fa-pencil mr-1" aria-hidden="true"></i>Manage
                                                             </a>
                                                         </td>

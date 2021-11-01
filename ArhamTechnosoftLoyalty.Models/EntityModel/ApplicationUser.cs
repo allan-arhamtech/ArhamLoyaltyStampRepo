@@ -12,4 +12,5 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
+
 }

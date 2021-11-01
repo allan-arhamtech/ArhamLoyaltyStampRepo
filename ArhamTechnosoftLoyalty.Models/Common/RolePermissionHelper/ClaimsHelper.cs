@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArhamTechnosoftLoyalty.Models.Common
+namespace ArhamTechnosoftLoyalty.Models.Common.RolePermissionHelper
 {
     public static class ClaimsHelper
     {

@@ -10,9 +10,10 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
 {
     public partial class CompanyMaster
     {
-        
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CompanyId { get; set; }
         public string CompanyName { get; set; }
+        public IList<CompanyBranch> CompanyBranches { get; set; }
     }
 }

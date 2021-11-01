@@ -1,5 +1,6 @@
 using ArhamTechnosoftLoyalty.DAL.Data;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
+using ArhamTechnosoftLoyalty.MVC.Helper;
 using ArhamTechnosoftLoyalty.MVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,9 @@ namespace ArhamTechnosoftLoyalty.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+
             #region AppSetting
             // configure strongly typed settings objects
             IConfigurationSection appSettingsSection = Configuration.GetSection("AppSettings");

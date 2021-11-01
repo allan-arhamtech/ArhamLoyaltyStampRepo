@@ -18,4 +18,6 @@ namespace ArhamTechnosoftLoyalty.Models.Common
         public string Value { get; set; }
         public bool Selected { get; set; }
     }
+
+    
 }

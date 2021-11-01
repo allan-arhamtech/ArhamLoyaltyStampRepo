@@ -1,4 +1,6 @@
 ﻿using ArhamTechnosoftLoyalty.Models.Account;
+using ArhamTechnosoftLoyalty.Models.Common;
+using ArhamTechnosoftLoyalty.Models.Common.RolePermissionHelper;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
 using ArhamTechnosoftLoyalty.Models.ViewModel.Account;
 using ArhamTechnosoftLoyalty.MVC.Models;
@@ -146,6 +148,55 @@ namespace ArhamTechnosoftLoyalty.MVC.Controllers
         {
             var roles = await _roleManager.Roles.ToListAsync();
             return View();
+        }
+        
+        [Route("get-role-permission/{roleId}")]
+        [HttpGet]
+        public async Task<ActionResult> GetRolePermission(string roleId)
+        {
+            PermissionViewModel model = new PermissionViewModel();
+            List<RoleClaimsViewModel> allPermissions = new List<RoleClaimsViewModel>();
+            allPermissions.GetPermissions(typeof(Permissions.UserManagement), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Company), roleId);
+            var role = await _roleManager.FindByIdAsync(roleId);
+            model.RoleId = roleId;
+            var claims = await _roleManager.GetClaimsAsync(role);
+            var allClaimValues = allPermissions.Select(a => a.Value).ToList();
+            var roleClaimValues = claims.Select(a => a.Value).ToList();
+            var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
+            foreach (var permission in allPermissions)
+            {
+                if (authorizedClaims.Any(a => a == permission.Value))
+                {
+                    permission.Selected = true;
+                }
+            }
+            model.RoleClaims = allPermissions;
+            return View(model);
+        }
+
+        [Route("update-role-permission")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateRolePermission(PermissionViewModel model)
+        {
+            var role = await _roleManager.FindByIdAsync(model.RoleId);
+            var claims = await _roleManager.GetClaimsAsync(role);
+            foreach (var claim in claims)
+            {
+                await _roleManager.RemoveClaimAsync(role, claim);
+            }
+            var selectedClaims = model.RoleClaims.Where(a => a.Selected).ToList();
+            foreach (var claim in selectedClaims)
+            {
+                await _roleManager.AddPermissionClaim(role, claim.Value);
+            }
+            return RedirectToAction("GetRolePermission", new { roleId = model.RoleId });
+        }
+
+        [Route("register-company-user")]
+        public async Task<IActionResult> RegisterCompanyUser()
+        {
+            var roles = await _roleManager.Roles.ToListAsync();
         }
     }
 }
