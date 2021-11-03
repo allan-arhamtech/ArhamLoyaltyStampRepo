@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ArhamTechnosoftLoyalty.DAL.Migrations
 {
     [DbContext(typeof(ArhamTechLoyaltyDbContext))]
-    [Migration("20211029093049_initial")]
-    partial class initial
+    [Migration("20211102061051_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,12 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -92,18 +98,13 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("text");
-
                     b.Property<string>("BranchName")
                         .HasColumnType("text");
 
-                    b.Property<long?>("CompanyId")
+                    b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
                     b.HasKey("BranchId");
-
-                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("CompanyId");
 
@@ -117,17 +118,49 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("text");
-
                     b.Property<string>("CompanyName")
                         .HasColumnType("text");
 
                     b.HasKey("CompanyId");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.ToTable("CompanyMaster");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyStore", b =>
+                {
+                    b.Property<long>("StoreId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long>("CompanyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StoreName")
+                        .HasColumnType("text");
+
+                    b.HasKey("StoreId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("CompanyStore");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyUser", b =>
+                {
+                    b.Property<long>("CompanyUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("applicationUserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("CompanyUserId");
+
+                    b.HasIndex("applicationUserId");
+
+                    b.ToTable("CompanyUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -262,22 +295,33 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
             modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyBranch", b =>
                 {
-                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.ApplicationUser", null)
-                        .WithMany("BranchList")
-                        .HasForeignKey("ApplicationUserId");
-
                     b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
+                        .WithMany("CompanyBranches")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", b =>
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyStore", b =>
                 {
-                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.ApplicationUser", null)
-                        .WithMany("CompanyList")
-                        .HasForeignKey("ApplicationUserId");
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyUser", b =>
+                {
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.ApplicationUser", "applicationUser")
+                        .WithMany()
+                        .HasForeignKey("applicationUserId");
+
+                    b.Navigation("applicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -331,11 +375,9 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.ApplicationUser", b =>
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", b =>
                 {
-                    b.Navigation("BranchList");
-
-                    b.Navigation("CompanyList");
+                    b.Navigation("CompanyBranches");
                 });
 #pragma warning restore 612, 618
         }

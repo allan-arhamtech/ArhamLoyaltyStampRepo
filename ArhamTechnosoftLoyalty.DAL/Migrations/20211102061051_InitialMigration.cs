@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ArhamTechnosoftLoyalty.DAL.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -27,6 +27,8 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -45,6 +47,19 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyMaster",
+                columns: table => new
+                {
+                    CompanyId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CompanyName = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyMaster", x => x.CompanyId);
                 });
 
             migrationBuilder.CreateTable(
@@ -154,20 +169,19 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CompanyMaster",
+                name: "CompanyUser",
                 columns: table => new
                 {
-                    CompanyId = table.Column<long>(type: "bigint", nullable: false)
+                    CompanyUserId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CompanyName = table.Column<string>(type: "text", nullable: true),
-                    ApplicationUserId = table.Column<string>(type: "text", nullable: true)
+                    applicationUserId = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CompanyMaster", x => x.CompanyId);
+                    table.PrimaryKey("PK_CompanyUser", x => x.CompanyUserId);
                     table.ForeignKey(
-                        name: "FK_CompanyMaster_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_CompanyUser_AspNetUsers_applicationUserId",
+                        column: x => x.applicationUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -180,24 +194,37 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                     BranchId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     BranchName = table.Column<string>(type: "text", nullable: true),
-                    CompanyId = table.Column<long>(type: "bigint", nullable: true),
-                    ApplicationUserId = table.Column<string>(type: "text", nullable: true)
+                    CompanyId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CompanyBranch", x => x.BranchId);
                     table.ForeignKey(
-                        name: "FK_CompanyBranch_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
                         name: "FK_CompanyBranch_CompanyMaster_CompanyId",
                         column: x => x.CompanyId,
                         principalTable: "CompanyMaster",
                         principalColumn: "CompanyId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CompanyStore",
+                columns: table => new
+                {
+                    StoreId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    StoreName = table.Column<string>(type: "text", nullable: true),
+                    CompanyId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CompanyStore", x => x.StoreId);
+                    table.ForeignKey(
+                        name: "FK_CompanyStore_CompanyMaster_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "CompanyMaster",
+                        principalColumn: "CompanyId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -238,19 +265,19 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyBranch_ApplicationUserId",
-                table: "CompanyBranch",
-                column: "ApplicationUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CompanyBranch_CompanyId",
                 table: "CompanyBranch",
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CompanyMaster_ApplicationUserId",
-                table: "CompanyMaster",
-                column: "ApplicationUserId");
+                name: "IX_CompanyStore_CompanyId",
+                table: "CompanyStore",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CompanyUser_applicationUserId",
+                table: "CompanyUser",
+                column: "applicationUserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -272,6 +299,12 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "CompanyBranch");
+
+            migrationBuilder.DropTable(
+                name: "CompanyStore");
+
+            migrationBuilder.DropTable(
+                name: "CompanyUser");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -19,8 +19,8 @@
                     </li>
                     @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Company.View)).Result.Succeeded)
                     {
-                        <li class="@Url.MakeActiveClass("company", "get-list")">
-                            <a asp-controller="company" asp-action="get-list" class="waves-effect waves-dark">
+                        <li class="@Url.MakeActiveClass("Company", "SaveCompany")">
+                            <a asp-controller="Company" asp-action="SaveCompany" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="feather icon-box"></i></span>
                                 <span class="pcoded-mtext">Company</span>
                             </a>

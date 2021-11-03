@@ -10,6 +10,6 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
 {
     public interface ICompanyMasterService : IRepository<CompanyMaster>
     {
-        Task<Response> AddCompany(CompanyMaster entity);
+        Task<Response<bool>> AddCompany(CompanyMaster entity);
     }
 }

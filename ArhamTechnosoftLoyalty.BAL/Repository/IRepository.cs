@@ -23,12 +23,12 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
                 string includeProperties = null
             );
 
-        Response Add(T entity);
+        Response<T> Add(T entity);
 
-        Response Remove(int id);
+        Response<T> Remove(int id);
 
-        Response Remove(T entity);
+        Response<T> Remove(T entity);
 
-        Response RemoveRange(IEnumerable<T> entity);
+        Response<T> RemoveRange(IEnumerable<T> entity);
     }
 }

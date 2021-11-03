@@ -144,6 +144,23 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                     b.ToTable("CompanyStore");
                 });
 
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyUser", b =>
+                {
+                    b.Property<long>("CompanyUserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("applicationUserId")
+                        .HasColumnType("text");
+
+                    b.HasKey("CompanyUserId");
+
+                    b.HasIndex("applicationUserId");
+
+                    b.ToTable("CompanyUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -277,7 +294,7 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
             modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyBranch", b =>
                 {
                     b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", "Company")
-                        .WithMany()
+                        .WithMany("CompanyBranches")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -294,6 +311,15 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyUser", b =>
+                {
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.ApplicationUser", "applicationUser")
+                        .WithMany()
+                        .HasForeignKey("applicationUserId");
+
+                    b.Navigation("applicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -345,6 +371,11 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", b =>
+                {
+                    b.Navigation("CompanyBranches");
                 });
 #pragma warning restore 612, 618
         }

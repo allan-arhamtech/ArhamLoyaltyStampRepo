@@ -843,3 +843,4 @@ C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\o
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\ArhamTechnosoftLoyalty.MVC.pdb
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\ArhamTechnosoftLoyalty.MVC.genruntimeconfig.cache
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Account\GetRolePermission.cshtml.g.cs
+C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Company\SaveCompany.cshtml.g.cs

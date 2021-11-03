@@ -1,5 +1,6 @@
 ﻿using ArhamTechnosoftLoyalty.BAL.Repository;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
+using ArhamTechnosoftLoyalty.Models.ViewModel.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,7 +23,7 @@ namespace ArhamTechnosoftLoyalty.API.Areas.UserManagement.Controllers
 
         [HttpPost]
         [Route("add-user")]
-        public async Task<IActionResult> AddUser(ApplicationUser applicationUser)
+        public async Task<IActionResult> AddUser(RegisterUser registerUser)
         {
             //string token = HttpContext.GetToken();
             //string result = _appSettings.AuthenticateUser(token);
@@ -30,7 +31,7 @@ namespace ArhamTechnosoftLoyalty.API.Areas.UserManagement.Controllers
             {
                 try
                 {
-                    _unitOfWork.userService.Add(applicationUser);
+                    _unitOfWork.userService.CompanyUserRegister(registerUser);
                 }
                 catch (Exception ex)
                 {

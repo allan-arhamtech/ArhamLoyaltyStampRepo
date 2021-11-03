@@ -21,9 +21,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             this.dbSet = _db.Set<T>();
         }
 
-        public Response Add(T entity)
+        public Response<T> Add(T entity)
         {
-            Response response = new Response();
+            Response<T> response = new Response<T>();
             try
             {
                 var retval = dbSet.Add(entity);
@@ -37,9 +37,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             return response;
         }
 
-        public Response AddRange(IEnumerable<T> entity)
+        public Response<T> AddRange(IEnumerable<T> entity)
         {
-            Response response = new Response();
+            Response<T> response = new Response<T>();
             try
             {
                 dbSet.AddRange(entity);
@@ -99,9 +99,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             return query.FirstOrDefault();
         }
 
-        public Response Remove(int id)
+        public Response<T> Remove(int id)
         {
-            Response response = new Response();
+            Response<T> response = new Response<T>();
             try
             {
                 T entity = dbSet.Find(id);
@@ -117,9 +117,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
 
         }
 
-        public Response Remove(T entity)
+        public Response<T> Remove(T entity)
         {
-            Response response = new Response();
+            Response<T> response = new Response<T>();
             try
             {
                 dbSet.Remove(entity);
@@ -133,9 +133,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             return response;
         }
 
-        public Response RemoveRange(IEnumerable<T> entity)
+        public Response<T> RemoveRange(IEnumerable<T> entity)
         {
-            Response response = new Response();
+            Response<T> response = new Response<T>();
             try
             {
                 dbSet.RemoveRange(entity);

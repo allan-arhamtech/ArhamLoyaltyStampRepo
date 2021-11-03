@@ -2,6 +2,7 @@ using ArhamTechnosoftLoyalty.DAL.Data;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
 using ArhamTechnosoftLoyalty.MVC.Helper;
 using ArhamTechnosoftLoyalty.MVC.Models;
+using ArhamTechnosoftLoyalty.MVC.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,7 @@ namespace ArhamTechnosoftLoyalty.MVC
         {
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+            services.AddScoped<ICompanyService, CompanyService>();
 
             #region AppSetting
             // configure strongly typed settings objects

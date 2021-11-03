@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace ArhamTechnosoftLoyalty.Models.EntityModel
 {
-    public partial class CompanyMaster
+    public partial class Address
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long CompanyId { get; set; }
-        public string CompanyName { get; set; }
-        public virtual Address CompanyAddress { get; set; }
+        public long AddressId { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public int CityId { get; set; }
+        public int StateId { get; set; }
+        public int CountryId { get; set; }
     }
 }

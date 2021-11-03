@@ -16,5 +16,6 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         public string BranchName { get; set; }
         public long CompanyId { get; set; }
         public virtual CompanyMaster Company { get; set; }
+        public virtual Address BranchAddress { get; set; }
     }
 }

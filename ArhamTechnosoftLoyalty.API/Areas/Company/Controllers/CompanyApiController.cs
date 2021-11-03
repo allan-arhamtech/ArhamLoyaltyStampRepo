@@ -25,13 +25,30 @@ namespace ArhamTechnosoftLoyalty.API.Areas.Company.Controllers
         [Route("add-company")]
         public async Task<IActionResult> AddCompany(CompanyMaster CompanyMaster)
         {
+            
+            try
+            {
+                Response<bool> response = await _unitOfWork.companyMasterService.AddCompany(CompanyMaster);
+                return null;
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    code = 500,
+                    status = "Internal Server Error.",
+                    message = ex.Message
+                });
+            }
+
             //string token = HttpContext.GetToken();
             //string result = _appSettings.AuthenticateUser(token);
             if (true == true)
             {
                 try
                 {
-                    Response response = await _unitOfWork.companyMasterService.AddCompany(CompanyMaster);
+
+                    
                 }
                 catch (Exception ex)
                 {

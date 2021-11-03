@@ -18,9 +18,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
             _db = db;
         }
 
-        public async Task<Response> AddCompany(CompanyMaster entity)
+        public async Task<Response<bool>> AddCompany(CompanyMaster entity)
         {
-            Response response = new Response();
+            Response<bool> response = new Response<bool>();
             response.IsSuccess = false;
             try
             {
@@ -29,6 +29,7 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
                 if (result == 1)
                 {
                     response.IsSuccess = true;
+                    response.data.retValue = true;
                 }
             }
             catch (Exception ex)

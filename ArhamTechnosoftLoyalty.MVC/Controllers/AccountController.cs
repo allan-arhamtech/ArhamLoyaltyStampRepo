@@ -144,10 +144,10 @@ namespace ArhamTechnosoftLoyalty.MVC.Controllers
         }
         [Route("add-company-user")]
         [HttpPost]
-        public async Task<IActionResult> AddCompanyUser(long applicationUserId, CompanyUserVm companyUserVm)
+        public async Task<IActionResult> AddCompanyUser(long applicationUserId, RegisterUser registerUser)
         {
             var roles = await _roleManager.Roles.ToListAsync();
-            return View();
+            return RedirectToAction("");
         }
         
         [Route("get-role-permission/{roleId}")]
@@ -197,6 +197,7 @@ namespace ArhamTechnosoftLoyalty.MVC.Controllers
         public async Task<IActionResult> RegisterCompanyUser()
         {
             var roles = await _roleManager.Roles.ToListAsync();
+            return null;
         }
     }
 }

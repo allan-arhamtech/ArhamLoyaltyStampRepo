@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace ArhamTechnosoftLoyalty.BAL.Utility
 {
-    public class Response
+    public class Response<T>
     {
         public string Message { get; set; }
         public List<string> Errors { get; set; }
         public bool IsSuccess { get; set; }
-        public object data { get; set; }
+        public Data<T> data { get; set; }
+    }
+
+    public class Data<T>
+    {
+        public T retValue { get; set; }
     }
 }
