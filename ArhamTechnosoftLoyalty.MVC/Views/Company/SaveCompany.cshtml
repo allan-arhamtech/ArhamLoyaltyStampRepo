@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster
+
+@{
     ViewData["Title"] = "SaveCompany";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -40,9 +42,9 @@
                 <!-- Page body start -->
                 <div class="page-body">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <!-- Form start -->
-                            <form id="main" method="post" asp-action="AddRole" asp-controller="Account" novalidate>
+                            <form id="frmCompany" method="post" asp-action="SaveCompany" asp-controller="Company" novalidate>
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>Company</h5>
@@ -50,16 +52,61 @@
                                     <div class="card-block">
                                         <div class="form-group row">
                                             <div class="col-sm-6">
-                                                <label class="col-form-label">Simple Input</label>
-                                                <input type="text" class="form-control" name="roleName" id="roleName" placeholder="Role">
-                                                <span class="messages"></span>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <label class="col-form-label">Simple Input</label>
-                                                <input type="text" class="form-control" name="roleName" id="roleName" placeholder="Role">
+                                                <label class="col-form-label">Company Name</label>
+                                                <input type="text" class="form-control" id="txtCompanyName" placeholder="Company Name" asp-for="CompanyName" name="CompanyName">
                                                 <span class="messages"></span>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Address</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Address Line 1</label>
+                                                <input type="text" class="form-control" id="txtAddressLine1" placeholder="Address Line 1" asp-for="CompanyAddress.AddressLine1" name="CompanyAddress.AddressLine1">
+                                                <span class="messages"></span>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Address Line 2</label>
+                                                <input type="text" class="form-control" asp-for="CompanyAddress.AddressLine2" name="CompanyAddress.AddressLine2" id="txtAddressLine2" placeholder="Address Line 2">
+                                                <span class="messages"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Country</label>
+                                                <select class="js-example-basic-single col-sm-12" asp-for="CompanyAddress.CountryId" name="CompanyAddress.CountryId" id="ddlCountry">
+                                                    <option value="1">Alabama</option>
+                                                    <option value="2">Wyoming</option>
+                                                    <option value="3">Coming</option>
+                                                    <option value="4">Hanry Die</option>
+                                                    <option value="5">John Doe</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">State</label>
+                                                <select class="js-example-basic-single col-sm-12" asp-for="CompanyAddress.StateId" name="CompanyAddress.StateId" id="ddlState">
+                                                    <option value="1">Alabama</option>
+                                                    <option value="2">Wyoming</option>
+                                                    <option value="3">Coming</option>
+                                                    <option value="4">Hanry Die</option>
+                                                    <option value="5">John Doe</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">City</label>
+                                                <select class="js-example-basic-single col-sm-12" asp-for="CompanyAddress.CityId" name="CompanyAddress.CityId" id="ddl.City">
+                                                    <option value="1">Alabama</option>
+                                                    <option value="2">Wyoming</option>
+                                                    <option value="3">Coming</option>
+                                                    <option value="4">Hanry Die</option>
+                                                    <option value="5">John Doe</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group row">
                                             <div class="col-sm-10">
                                                 <button type="submit" class="btn btn-success m-b-0">Submit</button>
@@ -78,6 +125,16 @@
     </div>
 </div>
 
+@section Scripts{
+<script>
+    setTimeout(function () {
+        $(document).ready(function () {
+            $(".js-example-basic-single").select2();
+        })
+    }, 350);
+    
+</script>
+}
 
 
 

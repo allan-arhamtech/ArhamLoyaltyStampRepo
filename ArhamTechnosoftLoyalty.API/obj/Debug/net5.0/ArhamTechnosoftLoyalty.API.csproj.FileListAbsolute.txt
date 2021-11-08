@@ -246,3 +246,4 @@ C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.API\o
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.API\obj\Debug\net5.0\ref\ArhamTechnosoftLoyalty.API.dll
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.API\obj\Debug\net5.0\ArhamTechnosoftLoyalty.API.pdb
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.API\obj\Debug\net5.0\ArhamTechnosoftLoyalty.API.genruntimeconfig.cache
+C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.API\bin\Debug\net5.0\Dapper.dll

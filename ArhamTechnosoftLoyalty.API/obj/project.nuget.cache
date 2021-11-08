@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/BXd23+2ao8f9n1D/GUU91kJJrWqI8R8LcrnKeQMvh6wDt9DgbI0nN6WnwF1y4/8uIna2OIDbdRIcw3qo9tQkg==",
+  "dgSpecHash": "90wBxph3jQ+SkkjrW1fjlwfITvbiqYDWOvxfNmWlgazSpE1Gj1o9vhmlS6diLbcQQqrnhDgarArUxyVgEOIp2g==",
   "success": true,
   "projectFilePath": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.API\\ArhamTechnosoftLoyalty.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\arham13\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.11\\microsoft.aspnetcore.cryptography.internal.5.0.11.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",

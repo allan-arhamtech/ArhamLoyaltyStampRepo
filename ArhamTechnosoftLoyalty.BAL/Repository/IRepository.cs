@@ -1,4 +1,5 @@
-﻿using ArhamTechnosoftLoyalty.BAL.Utility;
+﻿
+using ArhamTechnosoftLoyalty.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,12 +24,12 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
                 string includeProperties = null
             );
 
-        Response<T> Add(T entity);
+        CustomResponse<T> Add(T entity);
 
-        Response<T> Remove(int id);
+        CustomResponse<T> Remove(int id);
 
-        Response<T> Remove(T entity);
+        CustomResponse<T> Remove(T entity);
 
-        Response<T> RemoveRange(IEnumerable<T> entity);
+        CustomResponse<T> RemoveRange(IEnumerable<T> entity);
     }
 }

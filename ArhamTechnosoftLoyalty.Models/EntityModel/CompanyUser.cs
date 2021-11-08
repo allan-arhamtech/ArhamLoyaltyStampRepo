@@ -13,6 +13,8 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CompanyUserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual CompanyMaster CompanyMaster { get; set; }
         public virtual CompanyBranch CompanyBranch { get; set; }

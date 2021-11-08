@@ -1,5 +1,5 @@
 ﻿using ArhamTechnosoftLoyalty.BAL.Repository;
-using ArhamTechnosoftLoyalty.BAL.Utility;
+using ArhamTechnosoftLoyalty.Models.Common;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -25,48 +25,48 @@ namespace ArhamTechnosoftLoyalty.API.Areas.Company.Controllers
         [Route("add-company")]
         public async Task<IActionResult> AddCompany(CompanyMaster CompanyMaster)
         {
-            
-            try
+            CustomResponse<bool> response = new CustomResponse<bool>();
+            response = await _unitOfWork.companyMasterService.AddCompany(CompanyMaster);
+            if (response.isSuccess == true)
             {
-                Response<bool> response = await _unitOfWork.companyMasterService.AddCompany(CompanyMaster);
-                return null;
-            }
-            catch(Exception ex)
-            {
-                return StatusCode(500, new
+                return StatusCode(200, new
                 {
-                    code = 500,
-                    status = "Internal Server Error.",
-                    message = ex.Message
+                    code = 200,
+                    message = "Company Saved Successfully.",
+                    isSuccess = response.isSuccess,
+                    data = response.data
+                });
+            }   
+            return StatusCode(500, new
+            {
+                code = 500,
+                message = response.message,
+                data = response.data
+            });
+        }
+
+        [HttpGet]
+        [Route("get-company/{companyId?}")]
+        public async Task<IActionResult> GetCompany(long? companyId)
+        {
+            CustomResponse<IList<CompanyMaster>> response = new CustomResponse<IList<CompanyMaster>>();
+            response = await _unitOfWork.companyMasterService.GetCompanyMaster(companyId);
+            if (response.isSuccess == true)
+            {
+                return StatusCode(200, new
+                {
+                    code = 200,
+                    message = "Company Saved Successfully.",
+                    isSuccess = response.isSuccess,
+                    data = response.data
                 });
             }
-
-            //string token = HttpContext.GetToken();
-            //string result = _appSettings.AuthenticateUser(token);
-            if (true == true)
+            return StatusCode(500, new
             {
-                try
-                {
-
-                    
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, new
-                    {
-                        code = 500,
-                        status = "Internal Server Error",
-                        message = ex.Message
-                    });
-                }
-
-                return StatusCode(404, new
-                {
-                    code = 404,
-                    status = "not found",
-                    message = "No Records Found"
-                });
-            }
+                code = 500,
+                message = response.message,
+                data = response.data
+            });
         }
     }
 }

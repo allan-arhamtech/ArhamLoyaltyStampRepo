@@ -9,8 +9,7 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
 {
     public class ApplicationUser : IdentityUser
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        
     }
 
 }

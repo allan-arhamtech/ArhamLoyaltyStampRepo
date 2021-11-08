@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+2GK4MEyn2gef4Oj2+kzYzVpYvVCgikLOct6qNjaPp5I9psJX6VYcePC7jXI3PVNp5w1nH8nfZhcTAem5xyv7g==",
+  "dgSpecHash": "d22zkmfQ6uCXQ/wDKSCYSrOeqFTnF5Y6hoNIu9ml+YiMA5Ppo/bex0LqVYtamY4FTF+epMACNgvoJMUwpNj3Aw==",
   "success": true,
   "projectFilePath": "C:\\Users\\arham13\\source\\repos\\ArhamLoyaltyStampRepo\\ArhamTechnosoftLoyalty.BAL\\ArhamTechnosoftLoyalty.BAL.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\arham13\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.11\\microsoft.aspnetcore.cryptography.internal.5.0.11.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.11\\microsoft.aspnetcore.cryptography.keyderivation.5.0.11.nupkg.sha512",
     "C:\\Users\\arham13\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\5.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.5.0.11.nupkg.sha512",

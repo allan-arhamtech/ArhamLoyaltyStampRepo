@@ -1,5 +1,6 @@
-﻿using ArhamTechnosoftLoyalty.BAL.Utility;
+﻿
 using ArhamTechnosoftLoyalty.DAL.Data;
+using ArhamTechnosoftLoyalty.Models.Common;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -21,34 +22,34 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             this.dbSet = _db.Set<T>();
         }
 
-        public Response<T> Add(T entity)
+        public CustomResponse<T> Add(T entity)
         {
-            Response<T> response = new Response<T>();
+            CustomResponse<T> response = new CustomResponse<T>();
             try
             {
                 var retval = dbSet.Add(entity);
-                response.IsSuccess = true;
+                response.isSuccess = true;
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
-                response.IsSuccess = false;
+                response.message = ex.Message;
+                response.isSuccess = false;
             }
             return response;
         }
 
-        public Response<T> AddRange(IEnumerable<T> entity)
+        public CustomResponse<T> AddRange(IEnumerable<T> entity)
         {
-            Response<T> response = new Response<T>();
+            CustomResponse<T> response = new CustomResponse<T>();
             try
             {
                 dbSet.AddRange(entity);
-                response.IsSuccess = true;
+                response.isSuccess = true;
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
-                response.IsSuccess = false;
+                response.message = ex.Message;
+                response.isSuccess = false;
             }
             return response;
         }
@@ -99,9 +100,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             return query.FirstOrDefault();
         }
 
-        public Response<T> Remove(int id)
+        public CustomResponse<T> Remove(int id)
         {
-            Response<T> response = new Response<T>();
+            CustomResponse<T> response = new CustomResponse<T>();
             try
             {
                 T entity = dbSet.Find(id);
@@ -110,41 +111,41 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
-                response.IsSuccess = false;
+                response.message = ex.Message;
+                response.isSuccess = false;
             }
             return response;
 
         }
 
-        public Response<T> Remove(T entity)
+        public CustomResponse<T> Remove(T entity)
         {
-            Response<T> response = new Response<T>();
+            CustomResponse<T> response = new CustomResponse<T>();
             try
             {
                 dbSet.Remove(entity);
-                response.IsSuccess = true;
+                response.isSuccess = true;
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
-                response.IsSuccess = false;
+                response.message = ex.Message;
+                response.isSuccess = false;
             }
             return response;
         }
 
-        public Response<T> RemoveRange(IEnumerable<T> entity)
+        public CustomResponse<T> RemoveRange(IEnumerable<T> entity)
         {
-            Response<T> response = new Response<T>();
+            CustomResponse<T> response = new CustomResponse<T>();
             try
             {
                 dbSet.RemoveRange(entity);
-                response.IsSuccess = true;
+                response.isSuccess = true;
             }
             catch (Exception ex)
             {
-                response.Errors.Add(ex.Message);
-                response.IsSuccess = false;
+                response.message = ex.Message;
+                response.isSuccess = false;
             }
             return response;
         }

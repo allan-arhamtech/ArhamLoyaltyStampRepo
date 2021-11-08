@@ -3,15 +3,17 @@ using System;
 using ArhamTechnosoftLoyalty.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ArhamTechnosoftLoyalty.DAL.Migrations
 {
     [DbContext(typeof(ArhamTechLoyaltyDbContext))]
-    partial class ArhamTechLoyaltyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211108080116_add-commonfielads-companymaster")]
+    partial class addcommonfieladscompanymaster
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

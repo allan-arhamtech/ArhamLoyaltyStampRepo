@@ -3,15 +3,17 @@ using System;
 using ArhamTechnosoftLoyalty.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace ArhamTechnosoftLoyalty.DAL.Migrations
 {
     [DbContext(typeof(ArhamTechLoyaltyDbContext))]
-    partial class ArhamTechLoyaltyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211108072650_AddCompanyAddress")]
+    partial class AddCompanyAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -147,18 +149,6 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
                     b.Property<string>("CompanyName")
                         .HasColumnType("text");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("CompanyId");
 

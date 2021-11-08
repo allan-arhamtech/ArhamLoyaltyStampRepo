@@ -1,4 +1,4 @@
-﻿using ArhamTechnosoftLoyalty.BAL.Utility;
+﻿using ArhamTechnosoftLoyalty.Models.Common;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
 {
     public interface ICompanyMasterService : IRepository<CompanyMaster>
     {
-        Task<Response<bool>> AddCompany(CompanyMaster entity);
+        Task<CustomResponse<bool>> AddCompany(CompanyMaster entity);
+        Task<CustomResponse<IList<CompanyMaster>>> GetCompanyMaster(long? companyId);
     }
 }
