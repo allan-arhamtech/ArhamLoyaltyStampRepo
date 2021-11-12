@@ -8,7 +8,15 @@ namespace ArhamTechnosoftLoyalty.Models.Common
 {
     public class CustomResponse<T>
     {
-        public CustomResponse()
+        public int code { get; set; }
+        public string message { get; set; }
+        public bool isSuccess { get; set; }
+        public T data { get; set; }
+    }
+
+    public class CustomResponseData<T>
+    {
+        public CustomResponseData()
         {
             data = new Data<T>();
         }
@@ -19,6 +27,6 @@ namespace ArhamTechnosoftLoyalty.Models.Common
     }
     public class Data<T>
     {
-        public T retValue { get; set; }
+        public T parentItems { get; set; }
     }
 }

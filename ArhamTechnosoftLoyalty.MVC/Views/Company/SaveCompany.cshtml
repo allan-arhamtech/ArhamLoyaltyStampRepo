@@ -1,4 +1,4 @@
-﻿@model ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster
+﻿@model ArhamTechnosoftLoyalty.Models.ViewModel.Company.CompanyViewModel
 
 @{
     ViewData["Title"] = "SaveCompany";
@@ -21,13 +21,13 @@
                 <div class="page-header-breadcrumb">
                     <ul class=" breadcrumb breadcrumb-title">
                         <li class="breadcrumb-item">
-                            <a href="index.html"><i class="feather icon-home"></i></a>
+                            <a asp-action="Index" asp-controller="Home"><i class="feather icon-home"></i></a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#!">Company-List</a>
+                            <a asp-action="GetCompanies" asp-controller="Company">Company-List</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="#!">Add-Company</a>
+                            <a asp-action="SaveCompany" asp-controller="Company" asp-route-companyId="@Model.companyMaster.CompanyId">Add-Company</a>
                         </li>
                     </ul>
                 </div>
@@ -51,10 +51,20 @@
                                     </div>
                                     <div class="card-block">
                                         <div class="form-group row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Company Name</label>
-                                                <input type="text" class="form-control" id="txtCompanyName" placeholder="Company Name" asp-for="CompanyName" name="CompanyName">
-                                                <span class="messages"></span>
+                                                <input type="text" class="form-control" id="txtCompanyName" placeholder="Company Name" asp-for="companyMaster.CompanyName" name="companyMaster.CompanyName">
+                                                <span asp-validation-for="companyMaster.CompanyName" class="messages text-danger"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">E-mail</label>
+                                                <input type="text" class="form-control" id="txtCompanyEmail" placeholder="E-Mail" asp-for="companyMaster.CompanyMail.EmailAddress" name="companyMaster.CompanyMail.EmailAddress">
+                                                <span asp-validation-for="companyMaster.CompanyMail.EmailAddress" class="messages text-danger"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Phone No.</label>
+                                                <input type="tel" class="form-control" id="txtCompanyPhone" placeholder="Phone No." asp-for="companyMaster.CompanyPhone.PhoneNo" name="companyMaster.CompanyPhone.PhoneNo">
+                                                <span asp-validation-for="companyMaster.CompanyPhone.PhoneNo" class="messages text-danger"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,44 +77,61 @@
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">Address Line 1</label>
-                                                <input type="text" class="form-control" id="txtAddressLine1" placeholder="Address Line 1" asp-for="CompanyAddress.AddressLine1" name="CompanyAddress.AddressLine1">
-                                                <span class="messages"></span>
+                                                <input type="text" class="form-control" id="txtAddressLine1" placeholder="Address Line 1" asp-for="companyMaster.CompanyAddress.AddressLine1" name="companyMaster.CompanyAddress.AddressLine1">
+                                                <span asp-validation-for="companyMaster.CompanyAddress.AddressLine1" class="messages text-danger"></span>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">Address Line 2</label>
-                                                <input type="text" class="form-control" asp-for="CompanyAddress.AddressLine2" name="CompanyAddress.AddressLine2" id="txtAddressLine2" placeholder="Address Line 2">
+                                                <input type="text" class="form-control" asp-for="companyMaster.CompanyAddress.AddressLine2" name="companyMaster.CompanyAddress.AddressLine2" id="txtAddressLine2" placeholder="Address Line 2">
                                                 <span class="messages"></span>
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Country</label>
-                                                <select class="js-example-basic-single col-sm-12" asp-for="CompanyAddress.CountryId" name="CompanyAddress.CountryId" id="ddlCountry">
-                                                    <option value="1">Alabama</option>
-                                                    <option value="2">Wyoming</option>
-                                                    <option value="3">Coming</option>
-                                                    <option value="4">Hanry Die</option>
-                                                    <option value="5">John Doe</option>
+                                                <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.country,"id","name"))" asp-for="companyMaster.CompanyAddress.CountryId" name="companyMaster.CompanyAddress.CountryId" id="ddlCountry">
+                                                    <option selected disabled>Select</option>
                                                 </select>
+                                                <span class="messages text-danger" asp-validation-for="companyMaster.CompanyAddress.CountryId"></span>
                                             </div>
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">State</label>
-                                                <select class="js-example-basic-single col-sm-12" asp-for="CompanyAddress.StateId" name="CompanyAddress.StateId" id="ddlState">
-                                                    <option value="1">Alabama</option>
-                                                    <option value="2">Wyoming</option>
-                                                    <option value="3">Coming</option>
-                                                    <option value="4">Hanry Die</option>
-                                                    <option value="5">John Doe</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">City</label>
-                                                <select class="js-example-basic-single col-sm-12" asp-for="CompanyAddress.CityId" name="CompanyAddress.CityId" id="ddl.City">
-                                                    <option value="1">Alabama</option>
-                                                    <option value="2">Wyoming</option>
-                                                    <option value="3">Coming</option>
-                                                    <option value="4">Hanry Die</option>
-                                                    <option value="5">John Doe</option>
-                                                </select>
-                                            </div>
+                                            @if (Model != null && Model.masters.state != null)
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">State</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.state,"id","name"))" asp-for="companyMaster.CompanyAddress.StateId" name="companyMaster.CompanyAddress.StateId" id="ddlState">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyMaster.CompanyAddress.StateId"></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">State</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-for="companyMaster.CompanyAddress.StateId" name="companyMaster.CompanyAddress.StateId" id="ddlState">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyMaster.CompanyAddress.StateId"></span>
+                                                </div>
+                                            }
+                                            @if (Model != null && Model.masters.city != null)
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">City</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.city,"id","name"))" asp-for="companyMaster.CompanyAddress.CityId" name="companyMaster.CompanyAddress.CityId" id="ddlCity">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyMaster.CompanyAddress.CityId"></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">City</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-for="companyMaster.CompanyAddress.CityId" name="companyMaster.CompanyAddress.CityId" id="ddlCity">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyMaster.CompanyAddress.CityId"></span>
+                                                </div>
+                                            }
                                         </div>
 
                                         <div class="form-group row">
@@ -126,14 +153,39 @@
 </div>
 
 @section Scripts{
-<script>
-    setTimeout(function () {
-        $(document).ready(function () {
-            $(".js-example-basic-single").select2();
-        })
-    }, 350);
-    
-</script>
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        setTimeout(function () {
+            $(document).ready(function () {
+                $(".js-example-basic-single").select2();
+
+                $("#ddlCountry").change(function () {
+                    $.getJSON("/GenericMvc/GetChildDropdown", { id: $(this).val(), master: 'state' }, function (d) {
+                        var row = null;
+                        $("#ddlState").empty();
+                        row += "<option selected disabled>" + "Select" + "</option>"
+                        $.each(d, function (i, v) {
+                            row += "<option value=" + v.id + ">" + v.name + "</option>"
+                        });
+                        $("#ddlState").html(row);
+                    });
+                });
+
+                $("#ddlState").change(function () {
+                    $.getJSON("/GenericMvc/GetChildDropdown", { id: $(this).val(), master: 'city' }, function (d) {
+                        var row = null;
+                        $("#ddlCity").empty();
+                        row += "<option selected disabled>" + "Select" + "</option>"
+                        $.each(d, function (i, v) {
+                            row += "<option value=" + v.id + ">" + v.name + "</option>"
+                        });
+                        $("#ddlCity").html(row);
+                    });
+                });
+            })
+        }, 350);
+
+    </script>
 }
 
 

@@ -34,5 +34,13 @@ namespace ArhamTechnosoftLoyalty.Models.Common
             public const string Edit = "Permissions.Company.Edit";
             public const string Delete = "Permissions.Company.Delete";
         }
+
+        public static class Branch
+        {
+            public const string View = "Permissions.Branch.View";
+            public const string Create = "Permissions.Branch.Create";
+            public const string Edit = "Permissions.Branch.Edit";
+            public const string Delete = "Permissions.Branch.Delete";
+        }
     }
 }

@@ -29,5 +29,8 @@ namespace ArhamTechnosoftLoyalty.DAL.Data
         public DbSet<CompanyBranch> CompanyBranch { get; set; }
         public DbSet<CompanyStore> CompanyStore { get; set; }
         public DbSet<CompanyUser> CompanyUser { get; set; }
+        public DbSet<Country> Country { get; set; }
+        public DbSet<State> State { get; set; }
+        public DbSet<City> City { get; set; }
     }
 }

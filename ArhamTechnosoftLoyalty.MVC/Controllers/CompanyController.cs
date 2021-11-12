@@ -1,5 +1,7 @@
 ﻿using ArhamTechnosoftLoyalty.Models.Common;
+using ArhamTechnosoftLoyalty.Models.Common.MasterModel;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
+using ArhamTechnosoftLoyalty.Models.ViewModel.Company;
 using ArhamTechnosoftLoyalty.MVC.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,26 +23,59 @@ namespace ArhamTechnosoftLoyalty.MVC.Controllers
             _companyService = companyService;
             _userManager = userManager;
         }
-        [Route("save-company")]
-        public async Task<IActionResult> SaveCompany()
+        [Route("save-company/{companyId?}")]
+        public async Task<IActionResult> SaveCompany(long? companyId)
         {
-            return View();
+            CompanyViewModel companyViewModel = new CompanyViewModel();
+            List<string> Keys = new List<string>()
+            {
+                "country"
+            };
+            companyViewModel.masters = await _companyService.GetMaster(Keys);
+            if (companyId != null && companyId > 0)
+            {
+                companyViewModel.companyMaster = await _companyService.GetCompanyMaster(companyId);
+                companyViewModel.masters.state = await _companyService.GetMasterByParent("state", companyViewModel.companyMaster.CompanyAddress.CountryId);
+                companyViewModel.masters.city = await _companyService.GetMasterByParent("city", companyViewModel.companyMaster.CompanyAddress.StateId);
+            }
+            
+            return View(companyViewModel);
         }
         [HttpPost]
-        [Route("save-company")]
-        public async Task<IActionResult> SaveCompany(CompanyMaster companyMaster)
+        [Route("save-company/{companyId?}")]
+        public async Task<IActionResult> SaveCompany(long? companyId, CompanyMaster companyMaster)
         {
+            if(companyId != null || companyId > 0)
+            {
+                companyMaster.CompanyId = (long)companyId;
+            }
             var currentUser = await _userManager.GetUserAsync(HttpContext.User);
             companyMaster.CreatedBy = Guid.Parse(currentUser.Id);
             string retval = await _companyService.SaveCompany(companyMaster);
             if(retval == "SUCCESS")
             {
-                return RedirectToAction("SaveCompany");
+                return RedirectToAction("GetCompanies");
             }
             else
             {
                 return RedirectToAction("SaveCompany");
             }
+        }
+
+        [HttpGet]
+        [Route("get-companies")]
+        public async Task<IActionResult> GetCompanies()
+        {
+            var companyList = await _companyService.GetCompanyList(null);
+            return View(companyList);
+        }
+
+        [HttpGet]
+        [Route("company-view/{companyId}")]
+        public async Task<IActionResult> GetCompanyListById(long companyId)
+        {
+            var companyList = await _companyService.GetCompanyList(companyId);
+            return View(companyList.FirstOrDefault());
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using ArhamTechnosoftLoyalty.DAL.Data;
 using ArhamTechnosoftLoyalty.Models.Common;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
+using ArhamTechnosoftLoyalty.Models.ViewModel.Company;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -12,15 +14,13 @@ using System.Threading.Tasks;
 
 namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
 {
-    public class CompanyMasterService : Repository<CompanyMaster>, ICompanyMasterService
+    public class CompanyMasterService : ICompanyMasterService
     {
         private readonly ArhamTechLoyaltyDbContext _db;
-
-        public CompanyMasterService(ArhamTechLoyaltyDbContext db) : base(db)
+        public CompanyMasterService(ArhamTechLoyaltyDbContext db)
         {
             _db = db;
         }
-
         public Task<CustomResponse<bool>> AddCompany(CompanyMaster entity)
         {
             CustomResponse<bool> response = new CustomResponse<bool>();
@@ -32,19 +32,31 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
                     if (entity.CompanyId == 0)
                     {
                         entity.CreatedOn = DateTime.UtcNow;
+                        entity.IsActive = true;
+                        var retval = _db.Add(entity);
                     }
-                    entity.UpdatedOn = DateTime.UtcNow;
-                    var retval = _db.Add(entity);
+                    else if(entity.CompanyId > 0)
+                    {
+                        entity.UpdatedOn = DateTime.UtcNow;
+                        var updateRetVal = _db.Update(entity);
+                    }
+
                     var result = _db.SaveChanges();
                     if (result > 0)
                     {
+                        response.code = 200;
                         response.isSuccess = true;
-                        response.data.retValue = true;
+                        response.data = true;
+                        response.message = "Company get successfully.";
                         transaction.Commit();
                     }
                 }
                 catch (NpgsqlException ex)
                 {
+                    response.code = 500;
+                    response.isSuccess = false;
+                    response.data = false;
+                    response.message = ex.Message;
                     transaction.Rollback();
                     _db.Dispose();
                     response.message = ex.Message;
@@ -52,6 +64,10 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
                 }
                 catch (Exception ex)
                 {
+                    response.code = 500;
+                    response.isSuccess = false;
+                    response.data = false;
+                    response.message = ex.Message;
                     transaction.Rollback();
                     _db.Dispose();
                     response.message = ex.Message;
@@ -60,43 +76,85 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
             }
             return Task.FromResult(response);
         }
-
-        public Task<CustomResponse<IList<CompanyMaster>>> GetCompanyMaster(long? companyId)
+        public Task<CustomResponse<List<CompanyListModel>>> GetCompanyList(long? companyId, string connStr)
         {
-            CustomResponse<IList<CompanyMaster>> response = new CustomResponse<IList<CompanyMaster>>();
+            CustomResponse<List<CompanyListModel>> response = new CustomResponse<List<CompanyListModel>>();
             response.isSuccess = false;
             try
             {
-                DynamicParameters dynamicParameters1 = new DynamicParameters();
-                dynamicParameters1.Add("var_inputname", "HDFC");
-                IList<object> getultimateparent = new List<object>();
-                using (NpgsqlConnection sqlCon = new NpgsqlConnection("User ID=postgres;Password=DestServ@456;Host=3.7.23.160;Port=5432;Database=fsloader;Pooling=true;Timeout=300;CommandTimeout=300"))
-                {
-                    sqlCon.Open();
-                    getultimateparent = NpgHelper.QueryStoredProcPgSql<object>(sqlCon, "getultimateparent", dynamicParameters1).ToList();
-                }
-
                 DynamicParameters dynamicParameters = new DynamicParameters();
                 dynamicParameters.Add("var_companyid", companyId);
-                IList<object> getultimateparent1 = new List<object>();
-                using (NpgsqlConnection sqlCon = new NpgsqlConnection("User ID=postgres;Password=ArhamPg@123;Host=localhost;Port=5432;Database=LoyaltyStampDb;Pooling=true;Timeout=300;CommandTimeout=300"))
+                using (NpgsqlConnection sqlCon = new NpgsqlConnection(connStr))
                 {
                     sqlCon.Open();
-                    IList<object> companyList = NpgHelper.QueryStoredProcPgSql<object>(sqlCon, "companymaster_get", dynamicParameters).ToList();
+                    List<CompanyListModel> companyList = NpgHelper.QueryStoredProcPgSql<CompanyListModel>(sqlCon, "companymaster_get", dynamicParameters).ToList();
+                    if(companyList != null)
+                    {
+                        response.message = "Company get successfuly.";
+                        response.isSuccess = true;
+                        response.data = companyList;
+                    }
                 }
             }
             catch (NpgsqlException ex)
             {
                 response.message = ex.Message;
                 response.isSuccess = false;
+                response.data = null;
+                response.message = ex.Message;
             }
             catch (Exception ex)
             {
 
                 response.message = ex.Message;
                 response.isSuccess = false;
+                response.data = null;
+                response.message = ex.Message;
             }
            
+            return Task.FromResult(response);
+        }
+        public Task<CustomResponse<CompanyMaster>> GetCompanyMaster(long? companyId)
+        {
+            CustomResponse<CompanyMaster> response = new CustomResponse<CompanyMaster>();
+            response.isSuccess = false;
+            try
+            {
+                CompanyMaster companyMaster = new CompanyMaster();
+                if (companyId != null && companyId > 0)
+                {
+                    companyMaster = _db.Set<CompanyMaster>()
+                        .Include(i=>i.CompanyAddress)
+                        .Include(i=>i.CompanyMail)
+                        .Include(i=>i.CompanyPhone)
+                        .FirstOrDefault(x=>x.CompanyId==companyId);
+
+                    if (companyMaster != null)
+                    {
+                        response.code = 200;
+                        response.isSuccess = true;
+                        response.data = companyMaster;
+                        response.message = "Company get successfully.";
+                    }
+                }
+                
+            }
+            catch (NpgsqlException ex)
+            {
+                response.message = ex.Message;
+                response.isSuccess = false;
+                response.data = null;
+                response.message = ex.Message;
+            }
+            catch (Exception ex)
+            {
+
+                response.message = ex.Message;
+                response.isSuccess = false;
+                response.data = null;
+                response.message = ex.Message;
+            }
+
             return Task.FromResult(response);
         }
     }

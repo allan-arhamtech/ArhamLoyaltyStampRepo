@@ -39,15 +39,19 @@
                 <div class="page-body">
                     <div class="row">
                         <div class="col-sm-12">
-                            <!-- Individual Column Searching (Text Inputs) start -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5>Roles</h5>
-                                </div>
-                                <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
-                                        <form asp-controller="Account" method="post" asp-action="UpdateRolePermission" class="d-inline">
-                                            <input asp-for="@Model.RoleId" type="hidden" />
+                            <form asp-controller="Account" method="post" asp-action="UpdateRolePermission" class="d-inline">
+                                <!-- Individual Column Searching (Text Inputs) start -->
+                                <div class="card">
+                                    <div class="card-header d-flex justify-content-between">
+                                        <h5 style="place-self: center;">@Model.Role Permissions</h5>
+                                        <button type="submit" id="save" class="btn btn-success">
+                                            <i class="fa fa-check"></i>
+                                            Save
+                                        </button>
+                                    </div>
+                                    <div class="card-block">
+                                        @*<div class="dt-responsive table-responsive">
+                                            @*<input asp-for="@Model.RoleId" type="hidden" />
                                             <table id="tblPermission" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
@@ -57,9 +61,7 @@
                                                         <th>
                                                             Permission
                                                         </th>
-                                                        <th>
-                                                            Status
-                                                        </th>
+                                                        <th data-searchable="false" data-orderable="false">Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -91,17 +93,123 @@
                                                     </tr>
                                                 </tfoot>
                                             </table>
-                                            <div class="col-sm-12" style="padding: 20px 20px 0px 0px">
-                                                <button type="submit" id="save" class="btn btn-success">
-                                                    <i class="fa fa-check"></i>
-                                                    Save
-                                                </button>
-                                            </div>
-                                        </form>
+
+                                        </div>*@
+                                        <div class="dt-responsive table-responsive">
+                                            <input asp-for="@Model.RoleId" type="hidden" />
+                                            <table id="tblPermission" class="table table-striped table-bordered nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Module</th>
+                                                        <th>View</th>
+                                                        <th>Create</th>
+                                                        <th>Edit</th>
+                                                        <th>Delete</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>UserManagement</td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[0].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[0].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[0].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[1].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[1].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[1].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[2].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[2].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[2].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[3].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[3].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[3].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Company</td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[4].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[4].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[4].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[5].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[5].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[5].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[6].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[6].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[6].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[7].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[7].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[7].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Branch</td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[8].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[8].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[8].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[9].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[9].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[9].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[10].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[10].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[10].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <input asp-for="@Model.RoleClaims[11].Type" type="hidden" />
+                                                            <input asp-for="@Model.RoleClaims[11].Value" type="hidden" />
+                                                            <div class="form-check m-1">
+                                                                <input asp-for="@Model.RoleClaims[11].Selected" class="form-check-input" />
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Individual Column Searching (Text Inputs) end -->
+                                <!-- Individual Column Searching (Text Inputs) end -->
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -120,7 +228,7 @@
             });
 
             // DataTable
-            var table = $('#tblPermission').DataTable();
+            //var table = $('#tblPermission').DataTable();
 
             // Apply the search
             table.columns().every(function () {

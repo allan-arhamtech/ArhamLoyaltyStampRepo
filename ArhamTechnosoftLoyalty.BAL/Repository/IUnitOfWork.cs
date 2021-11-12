@@ -1,5 +1,7 @@
 ﻿using ArhamTechnosoftLoyalty.BAL.Repository.Account;
+using ArhamTechnosoftLoyalty.BAL.Repository.Branch;
 using ArhamTechnosoftLoyalty.BAL.Repository.Company;
+using ArhamTechnosoftLoyalty.BAL.Repository.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +14,9 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository
     {
         IApplicationUserService userService { get; }
         ICompanyMasterService companyMasterService { get; }
+        IGenericService genericService { get; }
+        IBranchService branchService { get; }
         void Save();
-        void Dispose();
+        
     }
 }

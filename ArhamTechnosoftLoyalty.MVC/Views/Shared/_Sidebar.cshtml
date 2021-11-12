@@ -13,16 +13,25 @@
                 {
                     <li class="@Url.MakeActiveClass("home", "index")">
                         <a asp-controller="Home" asp-action="Index" class="waves-effect waves-dark">
-                            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+                            <span class="pcoded-micon"><i class="fa fa-tachometer-alt"></i></span>
                             <span class="pcoded-mtext">Dashboard</span>
                         </a>
                     </li>
                     @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Company.View)).Result.Succeeded)
                     {
-                        <li class="@Url.MakeActiveClass("Company", "SaveCompany")">
-                            <a asp-controller="Company" asp-action="SaveCompany" class="waves-effect waves-dark">
-                                <span class="pcoded-micon"><i class="feather icon-box"></i></span>
+                        <li class="@Url.MakeActiveClass("Company", "GetCompanies") @Url.MakeActiveClass("Company", "SaveCompany") @Url.MakeActiveClass("Company", "GetCompanyListById")">
+                            <a asp-controller="Company" asp-action="GetCompanies" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="far fa-building"></i></span>
                                 <span class="pcoded-mtext">Company</span>
+                            </a>
+                        </li>
+                    }
+                    @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Branch.View)).Result.Succeeded)
+                    {
+                        <li class="@Url.MakeActiveClass("", "") @Url.MakeActiveClass("", "") @Url.MakeActiveClass("", "")">
+                            <a asp-controller="Company" asp-action="GetBranches" class="waves-effect waves-dark">
+                                <span class="pcoded-micon"><i class="fa fa-cube"></i></span>
+                                <span class="pcoded-mtext">Branch</span>
                             </a>
                         </li>
                     }

@@ -21,12 +21,13 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
             modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.Address", b =>
                 {
-                    b.Property<long>("AddressId")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("AddressLine1")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("AddressLine2")
@@ -41,7 +42,7 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                     b.Property<int>("StateId")
                         .HasColumnType("integer");
 
-                    b.HasKey("AddressId");
+                    b.HasKey("Id");
 
                     b.ToTable("Address");
                 });
@@ -110,6 +111,39 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.City", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("country_code")
+                        .HasColumnType("text");
+
+                    b.Property<int>("country_id")
+                        .HasColumnType("integer");
+
+                    b.Property<float>("latitude")
+                        .HasColumnType("real");
+
+                    b.Property<float>("longitude")
+                        .HasColumnType("real");
+
+                    b.Property<string>("name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("state_code")
+                        .HasColumnType("text");
+
+                    b.Property<int>("state_id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("id");
+
+                    b.ToTable("City");
+                });
+
             modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyBranch", b =>
                 {
                     b.Property<long>("BranchId")
@@ -117,18 +151,43 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("BranchAddressAddressId")
+                    b.Property<long?>("BranchAddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("BranchMailId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("BranchName")
                         .HasColumnType("text");
 
+                    b.Property<long?>("BranchPhoneId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("CompanyId")
                         .HasColumnType("bigint");
 
+                    b.Property<Guid?>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
+
                     b.HasKey("BranchId");
 
-                    b.HasIndex("BranchAddressAddressId");
+                    b.HasIndex("BranchAddressId");
+
+                    b.HasIndex("BranchMailId");
+
+                    b.HasIndex("BranchPhoneId");
 
                     b.HasIndex("CompanyId");
 
@@ -142,17 +201,27 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("CompanyAddressAddressId")
+                    b.Property<long?>("CompanyAddressId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CompanyMailId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("CompanyName")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<Guid>("CreatedBy")
+                    b.Property<long?>("CompanyPhoneId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("CreatedBy")
                         .HasColumnType("uuid");
 
-                    b.Property<DateTime>("CreatedOn")
+                    b.Property<DateTime?>("CreatedOn")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uuid");
@@ -162,7 +231,11 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
                     b.HasKey("CompanyId");
 
-                    b.HasIndex("CompanyAddressAddressId");
+                    b.HasIndex("CompanyAddressId");
+
+                    b.HasIndex("CompanyMailId");
+
+                    b.HasIndex("CompanyPhoneId");
 
                     b.ToTable("CompanyMaster");
                 });
@@ -218,6 +291,95 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                     b.HasIndex("CompanyMasterCompanyId");
 
                     b.ToTable("CompanyUser");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.Country", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("iso2")
+                        .HasColumnType("text");
+
+                    b.Property<float>("latitude")
+                        .HasColumnType("real");
+
+                    b.Property<float>("longitude")
+                        .HasColumnType("real");
+
+                    b.Property<string>("name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("phone_code")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Country");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.Email", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Email");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.Phone", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("PhoneNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Phone");
+                });
+
+            modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.State", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("country_code")
+                        .HasColumnType("text");
+
+                    b.Property<string>("country_id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("latitude")
+                        .HasColumnType("text");
+
+                    b.Property<string>("longitude")
+                        .HasColumnType("text");
+
+                    b.Property<string>("name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("state_code")
+                        .HasColumnType("text");
+
+                    b.HasKey("id");
+
+                    b.ToTable("State");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -354,7 +516,15 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                 {
                     b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.Address", "BranchAddress")
                         .WithMany()
-                        .HasForeignKey("BranchAddressAddressId");
+                        .HasForeignKey("BranchAddressId");
+
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.Email", "BranchMail")
+                        .WithMany()
+                        .HasForeignKey("BranchMailId");
+
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.Phone", "BranchPhone")
+                        .WithMany()
+                        .HasForeignKey("BranchPhoneId");
 
                     b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyMaster", "Company")
                         .WithMany()
@@ -364,6 +534,10 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
 
                     b.Navigation("BranchAddress");
 
+                    b.Navigation("BranchMail");
+
+                    b.Navigation("BranchPhone");
+
                     b.Navigation("Company");
                 });
 
@@ -371,9 +545,21 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                 {
                     b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.Address", "CompanyAddress")
                         .WithMany()
-                        .HasForeignKey("CompanyAddressAddressId");
+                        .HasForeignKey("CompanyAddressId");
+
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.Email", "CompanyMail")
+                        .WithMany()
+                        .HasForeignKey("CompanyMailId");
+
+                    b.HasOne("ArhamTechnosoftLoyalty.Models.EntityModel.Phone", "CompanyPhone")
+                        .WithMany()
+                        .HasForeignKey("CompanyPhoneId");
 
                     b.Navigation("CompanyAddress");
+
+                    b.Navigation("CompanyMail");
+
+                    b.Navigation("CompanyPhone");
                 });
 
             modelBuilder.Entity("ArhamTechnosoftLoyalty.Models.EntityModel.CompanyStore", b =>

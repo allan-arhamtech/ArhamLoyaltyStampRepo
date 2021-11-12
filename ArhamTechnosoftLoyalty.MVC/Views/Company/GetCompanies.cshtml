@@ -1,0 +1,146 @@
+﻿@model IList<ArhamTechnosoftLoyalty.Models.ViewModel.Company.CompanyListModel>
+@{
+    ViewData["Title"] = "GetCompanies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+
+<div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="feather icon-clipboard bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5>Company List</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="page-header-breadcrumb">
+                    <ul class=" breadcrumb breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a asp-action="Index" asp-controller="Home"><i class="feather icon-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-action="GetCompanies" asp-controller="Company">Company-List</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Individual Column Searching (Text Inputs) start -->
+                            <div class="card">
+
+                                <div class="card-header d-flex justify-content-between">
+                                    <h5 style="place-self: center;">Company</h5>
+                                    <a asp-controller="Company" asp-action="SaveCompany" class="btn btn-dark btn-sm"><i class="fa fa-plus-circle" aria-hidden="true"></i>Company</a>
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                        <table id="tblCompany" class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    @*<th>#</th>*@
+                                                    <th>Company Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Address</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th data-searchable="false" data-orderable="false">Action</th>
+                                                </tr>
+                                            </thead>
+                                            
+                                            <tbody>
+                                                
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        @*<td>@(i + 1)</td>*@
+                                                        <td>@item.CompanyName</td>
+                                                        <td>@item.CompanyEmail</td>
+                                                        <td>@item.CompanyPhone</td>
+                                                        <td>@item.AddressLine1</td>
+                                                        <td>@item.CityName</td>
+                                                        <td>@item.StateName</td>
+                                                        <td>
+                                                            <a asp-action="SaveCompany" asp-controller="Company" asp-route-companyId="@item.CompanyId"><i class="fa fa-edit mr-1" aria-hidden="true"></i></a>
+                                                            <a asp-action="GetCompanyListById" asp-controller="Company" asp-route-companyId="@item.CompanyId"><i class="fa fa-eye mr-1" aria-hidden="true"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    @*<th>#</th>*@
+                                                    <th>Company Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone</th>
+                                                    <th>Address</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Individual Column Searching (Text Inputs) end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#tblCompany tfoot th').each(function () {
+                var title = $(this).text();
+                $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
+                if (title === "Action") {
+                    $(this).hide();
+                }
+            });
+
+            // DataTable
+            var table = $('#tblCompany').DataTable({
+                "order": [],
+                "bStateSave": true
+            });
+
+            // Apply the search
+            table.columns().every(function () {
+                var that = this;
+
+                $('input', this.footer()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
+        });
+    </script>
+    <partial name="_datatableJs" />
+}
+
+

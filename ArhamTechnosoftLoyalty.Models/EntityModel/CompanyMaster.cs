@@ -13,11 +13,15 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CompanyId { get; set; }
+        [Required]
         public string CompanyName { get; set; }
+        public virtual Email CompanyMail { get; set; }
+        public virtual Phone CompanyPhone { get; set; }
         public DateTime? CreatedOn { get; set; }
         public Guid? CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public Guid? UpdatedBy { get; set; }
         public virtual Address CompanyAddress { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace ArhamTechnosoftLoyalty.Models.Common
     public class PermissionViewModel
     {
         public string RoleId { get; set; }
+        public string Role { get; set; }
         public IList<RoleClaimsViewModel> RoleClaims { get; set; }
     }
 

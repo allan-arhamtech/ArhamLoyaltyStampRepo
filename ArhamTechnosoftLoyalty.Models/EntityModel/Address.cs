@@ -12,11 +12,15 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long AddressId { get; set; }
+        public long Id { get; set; }
+        [Required]
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
+        [Required]
         public int CityId { get; set; }
+        [Required]
         public int StateId { get; set; }
+        [Required]
         public int CountryId { get; set; }
     }
 }

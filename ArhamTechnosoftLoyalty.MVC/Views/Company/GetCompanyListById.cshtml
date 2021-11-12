@@ -1,0 +1,113 @@
+﻿@model ArhamTechnosoftLoyalty.Models.ViewModel.Company.CompanyListModel
+@{
+    ViewData["Title"] = "GetCompanyListById";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="feather icon-clipboard bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5>View Company</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="page-header-breadcrumb">
+                    <ul class=" breadcrumb breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a asp-action="Index" asp-controller="Home"><i class="feather icon-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-action="GetCompanies" asp-controller="Company">Company-List</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-action="GetCompanyListById" asp-controller="Company" asp-route-companyId="@Model.CompanyId">View-Company</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Form start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Company</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="form-group row">
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label">Company Name</label>
+                                            <input type="text" class="form-control" id="txtCompanyName" placeholder="Company Name" asp-for="CompanyName" name="CompanyName" readonly>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label">E-mail</label>
+                                            <input type="text" class="form-control" id="txtCompanyEmail" placeholder="E-Mail" asp-for="CompanyEmail" name="CompanyEmail" readonly>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label">Phone No.</label>
+                                            <input type="text" class="form-control" id="txtCompanyPhone" placeholder="Phone No." asp-for="CompanyPhone" name="CompanyPhone" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Address</h5>
+                                </div>
+                                <div class="card-block">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6">
+                                            <label class="col-form-label">Address Line 1</label>
+                                            <input type="text" class="form-control" id="txtAddressLine1" placeholder="Address Line 1" asp-for="AddressLine1" name="AddressLine1" readonly>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="col-form-label">Address Line 2</label>
+                                            <input type="text" class="form-control" asp-for="AddressLine2" name="AddressLine2" id="txtAddressLine2" placeholder="Address Line 2" readonly>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label">Country</label>
+                                            <input type="text" class="form-control" asp-for="CountryName" name="CountryName" readonly>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label">State</label>
+                                            <input type="text" class="form-control" asp-for="StateName" name="StateName" readonly>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <label class="col-form-label">State</label>
+                                            <input type="text" class="form-control" asp-for="CityName" name="CityName" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Form end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    
+}
+
+
+
+
+

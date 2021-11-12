@@ -156,10 +156,13 @@ namespace ArhamTechnosoftLoyalty.MVC.Controllers
         {
             PermissionViewModel model = new PermissionViewModel();
             List<RoleClaimsViewModel> allPermissions = new List<RoleClaimsViewModel>();
+            //Maintain below sequence in "GetRolePermission.cshtml" table data start with 0. 
             allPermissions.GetPermissions(typeof(Permissions.UserManagement), roleId);
             allPermissions.GetPermissions(typeof(Permissions.Company), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Branch), roleId);
             var role = await _roleManager.FindByIdAsync(roleId);
             model.RoleId = roleId;
+            model.Role = role.Name;
             var claims = await _roleManager.GetClaimsAsync(role);
             var allClaimValues = allPermissions.Select(a => a.Value).ToList();
             var roleClaimValues = claims.Select(a => a.Value).ToList();

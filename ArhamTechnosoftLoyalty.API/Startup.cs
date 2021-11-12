@@ -1,3 +1,4 @@
+using ArhamTechnosoftLoyalty.API.Helper;
 using ArhamTechnosoftLoyalty.BAL.Repository;
 using ArhamTechnosoftLoyalty.DAL.Data;
 using ArhamTechnosoftLoyalty.Models.EntityModel;
@@ -31,6 +32,12 @@ namespace ArhamTechnosoftLoyalty.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            #region AppSetting
+            // configure strongly typed settings objects
+            IConfigurationSection appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+            AppSettings appSettings = appSettingsSection.Get<AppSettings>();
+            #endregion
             services.AddControllers();
             services.AddDbContext<ArhamTechLoyaltyDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
