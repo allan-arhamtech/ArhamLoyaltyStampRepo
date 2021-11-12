@@ -45,12 +45,16 @@ namespace ArhamTechnosoftLoyalty.MVC.Controllers
         [Route("save-company/{companyId?}")]
         public async Task<IActionResult> SaveCompany(long? companyId, CompanyMaster companyMaster)
         {
-            if(companyId != null || companyId > 0)
+            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (companyId != null || companyId > 0)
             {
                 companyMaster.CompanyId = (long)companyId;
+                companyMaster.UpdatedBy = Guid.Parse(currentUser.Id);
             }
-            var currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            companyMaster.CreatedBy = Guid.Parse(currentUser.Id);
+            else
+            {
+                companyMaster.CreatedBy = Guid.Parse(currentUser.Id);
+            }
             string retval = await _companyService.SaveCompany(companyMaster);
             if(retval == "SUCCESS")
             {

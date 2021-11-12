@@ -38,7 +38,15 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
                     else if(entity.CompanyId > 0)
                     {
                         entity.UpdatedOn = DateTime.UtcNow;
-                        var updateRetVal = _db.Update(entity);
+                        var oldCompany = _db.CompanyMaster.Find(entity.CompanyId);
+                        _db.Entry(oldCompany).CurrentValues.SetValues(entity);
+
+                        //_db.CompanyMaster
+                        //    .Where(x => x.CompanyId == entity.CompanyId)
+                        //    .Update(p => new CompanyMaster()
+                        //    {
+                        //        IsActive = true
+                        //    });
                     }
 
                     var result = _db.SaveChanges();
@@ -47,7 +55,7 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
                         response.code = 200;
                         response.isSuccess = true;
                         response.data = true;
-                        response.message = "Company get successfully.";
+                        response.message = "Company saved successfully.";
                         transaction.Commit();
                     }
                 }

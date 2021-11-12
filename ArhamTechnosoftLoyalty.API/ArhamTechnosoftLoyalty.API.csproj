@@ -18,16 +18,4 @@
     <ProjectReference Include="..\ArhamTechnosoftLoyalty.DAL\ArhamTechnosoftLoyalty.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Company\Services\" />
-    <Folder Include="Areas\Company\Models\" />
-    <Folder Include="Areas\Generic\Data\" />
-    <Folder Include="Areas\Generic\Models\" />
-    <Folder Include="Areas\Generic\Views\" />
-    <Folder Include="Areas\UserManagement\Services\" />
-    <Folder Include="Areas\UserManagement\Models\" />
-    <Folder Include="Areas\UserManagement\Views\" />
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

@@ -36,6 +36,7 @@ namespace ArhamTechnosoftLoyalty.MVC
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
             services.AddScoped<ICompanyService, CompanyService>();
+            services.AddScoped<IGenericService, GenericService>();
 
             #region AppSetting
             // configure strongly typed settings objects

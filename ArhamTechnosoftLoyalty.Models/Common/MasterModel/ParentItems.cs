@@ -11,5 +11,6 @@ namespace ArhamTechnosoftLoyalty.Models.Common.MasterModel
         public List<MasterDropdown> country { get; set; }
         public List<MasterDropdown> state { get; set; }
         public List<MasterDropdown> city { get; set; }
+        public List<MasterDropdown> companymaster { get; set; }
     }
 }
