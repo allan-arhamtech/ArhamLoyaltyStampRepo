@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArhamTechnosoftLoyalty.DAL"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArhamTechnosoftLoyalty.Models", "ArhamTechnosoftLoyalty.Models\ArhamTechnosoftLoyalty.Models.csproj", "{89E02A66-4F3A-442F-8DF8-63C4D528DA3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArhamTechnosoftLoyalty.BAL", "ArhamTechnosoftLoyalty.BAL\ArhamTechnosoftLoyalty.BAL.csproj", "{5D933EF3-7FBC-4B5B-9DE0-5950B99B1F1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArhamTechnosoftLoyalty.BAL", "ArhamTechnosoftLoyalty.BAL\ArhamTechnosoftLoyalty.BAL.csproj", "{5D933EF3-7FBC-4B5B-9DE0-5950B99B1F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArhamTechnosoftLoyalty.MVC", "ArhamTechnosoftLoyalty.MVC\ArhamTechnosoftLoyalty.MVC.csproj", "{29C1D401-9AD7-42F5-A099-E9CAF1C17939}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArhamTechnosoftLoyalty.MVC", "ArhamTechnosoftLoyalty.MVC\ArhamTechnosoftLoyalty.MVC.csproj", "{29C1D401-9AD7-42F5-A099-E9CAF1C17939}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

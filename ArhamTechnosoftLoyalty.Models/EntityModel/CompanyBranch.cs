@@ -13,9 +13,11 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long BranchId { get; set; }
+        [Required]
         public string BranchName { get; set; }
         public virtual Email BranchMail { get; set; }
         public virtual Phone BranchPhone { get; set; }
+        [Required]
         public long CompanyId { get; set; }
         [ForeignKey("CompanyId")]
         public virtual CompanyMaster Company { get; set; }

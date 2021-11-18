@@ -26,6 +26,9 @@ namespace ArhamTechnosoftLoyalty.DAL.Data
         }
 
         public DbSet<CompanyMaster> CompanyMaster { get; set; }
+        public DbSet<Email> Email { get; set; }
+        public DbSet<Phone> Phone { get; set; }
+        public DbSet<Address> Address { get; set; }
         public DbSet<CompanyBranch> CompanyBranch { get; set; }
         public DbSet<CompanyStore> CompanyStore { get; set; }
         public DbSet<CompanyUser> CompanyUser { get; set; }

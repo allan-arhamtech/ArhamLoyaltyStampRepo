@@ -133,7 +133,11 @@
                                                 </div>
                                             }
                                         </div>
-
+                                        @*IS active hien field*@
+                                        @*<input type="hidden" asp-for="companyMaster.IsActive" name="companyMaster.IsActive" value="0"/>*@
+                                        <input type="hidden" asp-for="companyMaster.CompanyAddress.Id" name="companyMaster.CompanyAddress.Id"/>
+                                        <input type="hidden" asp-for="companyMaster.CompanyPhone.Id" name="companyMaster.CompanyPhone.Id"/>
+                                        <input type="hidden" asp-for="companyMaster.CompanyMail.Id" name="companyMaster.CompanyMail.Id"/>
                                         <div class="form-group row">
                                             <div class="col-sm-10">
                                                 <button type="submit" class="btn btn-success m-b-0">Submit</button>

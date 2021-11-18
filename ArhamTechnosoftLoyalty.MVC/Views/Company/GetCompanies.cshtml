@@ -64,24 +64,25 @@
                                             </thead>
                                             
                                             <tbody>
-                                                
-                                                @foreach (var item in Model)
+                                                @if (Model != null)
                                                 {
-                                                    <tr>
-                                                        @*<td>@(i + 1)</td>*@
-                                                        <td>@item.CompanyName</td>
-                                                        <td>@item.CompanyEmail</td>
-                                                        <td>@item.CompanyPhone</td>
-                                                        <td>@item.AddressLine1</td>
-                                                        <td>@item.CityName</td>
-                                                        <td>@item.StateName</td>
-                                                        <td>
-                                                            <a asp-action="SaveCompany" asp-controller="Company" asp-route-companyId="@item.CompanyId"><i class="fa fa-edit mr-1" aria-hidden="true"></i></a>
-                                                            <a asp-action="GetCompanyListById" asp-controller="Company" asp-route-companyId="@item.CompanyId"><i class="fa fa-eye mr-1" aria-hidden="true"></i></a>
-                                                        </td>
-                                                    </tr>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            @*<td>@(i + 1)</td>*@
+                                                            <td>@item.CompanyName</td>
+                                                            <td>@item.CompanyEmail</td>
+                                                            <td>@item.CompanyPhone</td>
+                                                            <td>@item.AddressLine1</td>
+                                                            <td>@item.CityName</td>
+                                                            <td>@item.StateName</td>
+                                                            <td>
+                                                                <a asp-action="SaveCompany" asp-controller="Company" asp-route-companyId="@item.CompanyId"><i class="fa fa-edit mr-1" aria-hidden="true"></i></a>
+                                                                <a asp-action="GetCompanyListById" asp-controller="Company" asp-route-companyId="@item.CompanyId"><i class="fa fa-eye mr-1" aria-hidden="true"></i></a>
+                                                            </td>
+                                                        </tr>
+                                                    }
                                                 }
-
                                             </tbody>
                                             <tfoot>
                                                 <tr>

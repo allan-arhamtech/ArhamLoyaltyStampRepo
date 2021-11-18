@@ -14,5 +14,6 @@ namespace ArhamTechnosoftLoyalty.BAL.Repository.Company
         Task<CustomResponse<bool>> AddCompany(CompanyMaster entity);
         Task<CustomResponse<List<CompanyListModel>>> GetCompanyList(long? companyId, string conn);
         Task<CustomResponse<CompanyMaster>> GetCompanyMaster(long? companyId);
+        Task<CustomResponse<bool>> DeleteCompany(long companyId);
     }
 }

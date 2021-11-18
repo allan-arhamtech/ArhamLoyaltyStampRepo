@@ -4,5 +4,196 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SaveBranch</h1>
+<div class="pcoded-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header card">
+        <div class="row align-items-end">
+            <div class="col-lg-8">
+                <div class="page-header-title">
+                    <i class="feather icon-clipboard bg-c-blue"></i>
+                    <div class="d-inline">
+                        <h5>Add Branch</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="page-header-breadcrumb">
+                    <ul class=" breadcrumb breadcrumb-title">
+                        <li class="breadcrumb-item">
+                            <a asp-action="Index" asp-controller="Home"><i class="feather icon-home"></i></a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-action="GetBranches" asp-controller="Branch">Branch-List</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a asp-action="SaveBranch" asp-controller="Branch" branchId="@Model.companyBranch.BranchId">Add-Branch</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
 
+    <div class="pcoded-inner-content">
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Form start -->
+                            <form id="frmBranch" method="post" asp-action="SaveBranch" asp-controller="Branch" novalidate>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Branch</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Branch Name</label>
+                                                <input type="text" class="form-control" id="txtBranchName" placeholder="Branch Name" asp-for="companyBranch.BranchName" name="companyBranch.BranchName">
+                                                <span asp-validation-for="companyBranch.BranchName" class="messages text-danger"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Company</label>
+                                                <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.companymaster,"id","name"))" asp-for="companyBranch.CompanyId" name="companyBranch.CompanyId" id="ddlCompany">
+                                                    <option disabled selected>Select</option>
+                                                </select>
+                                                <span class="messages text-danger" asp-validation-for="companyBranch.CompanyId"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">E-mail</label>
+                                                <input type="text" class="form-control" id="txtBranchEmail" placeholder="E-Mail" asp-for="companyBranch.BranchMail.EmailAddress" name="companyBranch.BranchMail.EmailAddress">
+                                                <span asp-validation-for="companyBranch.BranchMail.EmailAddress" class="messages text-danger"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Phone No.</label>
+                                                <input type="tel" class="form-control" id="txtBranchPhone" placeholder="Phone No." asp-for="companyBranch.BranchPhone.PhoneNo" name="companyBranch.BranchPhone.PhoneNo">
+                                                <span asp-validation-for="companyBranch.BranchPhone.PhoneNo" class="messages text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Address</h5>
+                                    </div>
+                                    <div class="card-block">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Address Line 1</label>
+                                                <input type="text" class="form-control" id="txtAddressLine1" placeholder="Address Line 1" asp-for="companyBranch.BranchAddress.AddressLine1" name="companyBranch.BranchAddress.AddressLine1">
+                                                <span asp-validation-for="companyBranch.BranchAddress.AddressLine1" class="messages text-danger"></span>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Address Line 2</label>
+                                                <input type="text" class="form-control" asp-for="companyBranch.BranchAddress.AddressLine2" name="companyBranch.BranchAddress.AddressLine2" placeholder="Address Line 2">
+                                                <span class="messages"></span>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Country</label>
+                                                <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.country,"id","name"))" asp-for="companyBranch.BranchAddress.CountryId" name="companyBranch.BranchAddress.CountryId" id="ddlCountry">
+                                                    <option selected disabled>Select</option>
+                                                </select>
+                                                <span class="messages text-danger" asp-validation-for="companyBranch.BranchAddress.CountryId"></span>
+                                            </div>
+                                            @if (Model != null && Model.masters.state != null)
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">State</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.state,"id","name"))" asp-for="companyBranch.BranchAddress.StateId" name="companyBranch.BranchAddress.StateId" id="ddlState">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyBranch.BranchAddress.StateId"></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">State</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-for="companyBranch.BranchAddress.StateId" name="companyBranch.BranchAddress.StateId" id="ddlState">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyBranch.BranchAddress.StateId"></span>
+                                                </div>
+                                            }
+                                            @if (Model != null && Model.masters.city != null)
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">City</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-items="@(new SelectList(Model.masters.city,"id","name"))" asp-for="companyBranch.BranchAddress.CityId" name="companyBranch.BranchAddress.CityId" id="ddlCity">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyBranch.BranchAddress.CityId"></span>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="col-sm-3">
+                                                    <label class="col-form-label">City</label>
+                                                    <select class="js-example-basic-single col-sm-12" asp-for="companyBranch.BranchAddress.CityId" name="companyBranch.BranchAddress.CityId" id="ddlCity">
+                                                        <option disabled selected>Select</option>
+                                                    </select>
+                                                    <span class="messages text-danger" asp-validation-for="companyBranch.BranchAddress.CityId"></span>
+                                                </div>
+                                            }
+                                        </div>
+                                        @*IS active hien field*@
+                                        @*<input type="hidden" asp-for="companyMaster.IsActive" name="companyMaster.IsActive" value="0"/>*@
+                                        <input type="hidden" asp-for="companyBranch.BranchAddress.Id" name="companyBranch.BranchAddress.Id" />
+                                        <input type="hidden" asp-for="companyBranch.BranchPhone.Id" name="companyBranch.BranchPhone.Id" />
+                                        <input type="hidden" asp-for="companyBranch.BranchMail.Id" name="companyBranch.BranchMail.Id" />
+                                        <div class="form-group row">
+                                            <div class="col-sm-10">
+                                                <button type="submit" class="btn btn-success m-b-0">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Form end -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Page body end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        setTimeout(function () {
+            $(document).ready(function () {
+                $(".js-example-basic-single").select2();
+
+                $("#ddlCountry").change(function () {
+                    $.getJSON("/GenericMvc/GetChildDropdown", { id: $(this).val(), master: 'state' }, function (d) {
+                        var row = null;
+                        $("#ddlState").empty();
+                        row += "<option selected disabled>" + "Select" + "</option>"
+                        $.each(d, function (i, v) {
+                            row += "<option value=" + v.id + ">" + v.name + "</option>"
+                        });
+                        $("#ddlState").html(row);
+                    });
+                });
+
+                $("#ddlState").change(function () {
+                    $.getJSON("/GenericMvc/GetChildDropdown", { id: $(this).val(), master: 'city' }, function (d) {
+                        var row = null;
+                        $("#ddlCity").empty();
+                        row += "<option selected disabled>" + "Select" + "</option>"
+                        $.each(d, function (i, v) {
+                            row += "<option value=" + v.id + ">" + v.name + "</option>"
+                        });
+                        $("#ddlCity").html(row);
+                    });
+                });
+            })
+        }, 350);
+
+    </script>
+}

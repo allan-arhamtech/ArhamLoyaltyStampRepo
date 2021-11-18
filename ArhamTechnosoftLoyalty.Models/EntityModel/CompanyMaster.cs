@@ -10,6 +10,7 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
 {
     public partial class CompanyMaster
     {
+        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CompanyId { get; set; }
@@ -21,6 +22,8 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         public Guid? CreatedBy { get; set; }
         public DateTime? UpdatedOn { get; set; }
         public Guid? UpdatedBy { get; set; }
+        //[ForeignKey("CompanyAddressId")]
+        //public long CompanyAddressId { get; set; }
         public virtual Address CompanyAddress { get; set; }
         public bool IsActive { get; set; }
     }

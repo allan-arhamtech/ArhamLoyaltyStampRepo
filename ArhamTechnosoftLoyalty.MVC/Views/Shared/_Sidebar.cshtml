@@ -28,8 +28,8 @@
                     }
                     @if ((AuthorizationService.AuthorizeAsync(User, Permissions.Branch.View)).Result.Succeeded)
                     {
-                        <li class="@Url.MakeActiveClass("Branch", "SaveBranch") @Url.MakeActiveClass("", "") @Url.MakeActiveClass("", "")">
-                            <a asp-controller="Branch" asp-action="SaveBranch" class="waves-effect waves-dark">
+                        <li class="@Url.MakeActiveClass("Branch", "SaveBranch") @Url.MakeActiveClass("Branch", "GetBranches") @Url.MakeActiveClass("", "")">
+                            <a asp-controller="Branch" asp-action="GetBranches" class="waves-effect waves-dark">
                                 <span class="pcoded-micon"><i class="fa fa-cube"></i></span>
                                 <span class="pcoded-mtext">Branch</span>
                             </a>

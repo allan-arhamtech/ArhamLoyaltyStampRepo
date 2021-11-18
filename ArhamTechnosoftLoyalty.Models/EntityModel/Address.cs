@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,5 +23,10 @@ namespace ArhamTechnosoftLoyalty.Models.EntityModel
         public int StateId { get; set; }
         [Required]
         public int CountryId { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public Guid? UpdatedBy { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        public bool IsActive { get; set; }
     }
 }

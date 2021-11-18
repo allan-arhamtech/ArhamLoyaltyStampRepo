@@ -849,3 +849,5 @@ C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\b
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Company\GetCompanies.cshtml.g.cs
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Company\GetCompanyListById.cshtml.g.cs
 C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Branch\SaveBranch.cshtml.g.cs
+C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Branch\GetBranches.cshtml.g.cs
+C:\Users\arham13\source\repos\ArhamLoyaltyStampRepo\ArhamTechnosoftLoyalty.MVC\obj\Debug\net5.0\Razor\Views\Branch\GetBranchListById.cshtml.g.cs

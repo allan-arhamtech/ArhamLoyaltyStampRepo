@@ -39,8 +39,23 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                     b.Property<int>("CountryId")
                         .HasColumnType("integer");
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("StateId")
                         .HasColumnType("integer");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -327,9 +342,24 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -343,9 +373,24 @@ namespace ArhamTechnosoftLoyalty.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("PhoneNo")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedOn")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
